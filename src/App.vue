@@ -1,19 +1,19 @@
 <template>
   <v-app>
-    <v-toolbar  app style="z-index:2; background-color: #FF9F00;">
-      <v-toolbar-side-icon @click.stop="drawer=!drawer, resize(drawer)"></v-toolbar-side-icon>
+    <v-toolbar color="primary"  app style="z-index:2;">
+      <v-toolbar-side-icon color="primary" @click.stop="drawer=!drawer, resize(drawer)"></v-toolbar-side-icon>
       <v-toolbar-title ></v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-toolbar-items class="hidden-sm-and-down">
+      <v-toolbar-items  class="hidden-sm-and-down">
     </v-toolbar-items> 
     </v-toolbar>
 
     <v-content>
           <v-navigation-drawer style="position: absolute;z-index:1" v-model="drawer">
-  <v-list two-line flat>
+  <v-list  two-line flat>
     <v-list-tile v-for="item in items" :key='id' @click="item.router">
       <v-list-tile-action>
-        <v-icon v-html="item.icon"></v-icon>
+        <v-icon color="primary"  v-html="item.icon"></v-icon>
       </v-list-tile-action>
       <v-list-tile-content>
   <v-list-tile-title v-text="item.title"></v-list-tile-title> 
@@ -91,7 +91,7 @@
           ref="calendar"
           :now="today"
           :value="today"
-          color="primary"
+          color="secondary"
           type="week"
         >
           <template v-slot:dayHeader="{ date }">
@@ -117,7 +117,7 @@
                   flat
                 >
                   <v-toolbar
-                    color="primary"
+                    color="secondary"
                     dark
                   >
                     <v-btn icon>
@@ -173,7 +173,7 @@
                   flat
                 >
                   <v-toolbar
-                    color="primary"
+                    color="secondary"
                     dark
                   >
                     <v-btn icon>
@@ -194,7 +194,7 @@
                   <v-card-actions>
                     <v-btn
                       flat
-                      color="secondary"
+                      color="primary"
                     >
                       Cancel
                     </v-btn>
