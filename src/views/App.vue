@@ -2,9 +2,9 @@
 <template>
  
   <v-app>
-    <v-toolbar color="primary" app style="z-index:2; background-color: teal;">
+    <v-toolbar color="primary" app style="z-index:2; ">
       <v-toolbar-side-icon color="primary" @click.stop="drawer=!drawer, resize(drawer)"></v-toolbar-side-icon>
-      <v-toolbar-title ></v-toolbar-title>
+      <v-toolbar-title style="color:white;">0браз</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-sm-and-down">
     </v-toolbar-items> 
@@ -15,12 +15,7 @@
   <v-list two-line flat>
     <v-list-tile v-for="item in items" :key='id' @click="">
       <router-link :to="item.router">
-      <v-list-tile-action>
-        <v-icon v-html="item.icon"></v-icon>
-      </v-list-tile-action>
-      <v-list-tile-content>
-  <v-list-tile-title v-text="item.title"></v-list-tile-title> 
-  </v-list-tile-content>
+        <v-list-tile-title tag="v-layout" v-text="item.title"></v-list-tile-title> 
   </router-link>
     </v-list-tile>
   </v-list>
@@ -46,7 +41,7 @@
 
         <v-card-actions>
           <v-btn flat>Share</v-btn>
-          <v-btn flat color="purple">Explore</v-btn>
+          <v-btn flat color="accent">Explore</v-btn>
           <v-spacer></v-spacer>
           <v-btn icon @click="show = !show">
             <v-icon>{{ show ? 'keyboard_arrow_down' : 'keyboard_arrow_up' }}</v-icon>
@@ -65,7 +60,7 @@
       :size="100"
       :width="15"
       :value="value"
-      color="4312AE"
+      color=accent
     >
       {{ value }}
     </v-progress-circular>
@@ -75,7 +70,7 @@
       :size="100"
       :width="15"
       :value="value"
-      color="4312AE"
+      color=accent
     >
       {{ value }}
     </v-progress-circular>
@@ -85,7 +80,7 @@
       :size="100"
       :width="15"
       :value="value"
-      color="4312AE"
+      color=accent
     >
       {{ value }}
     </v-progress-circular>
@@ -98,7 +93,7 @@
           ref="calendar"
           :now="today"
           :value="today"
-          color="primary"
+          color="secondary"
           type="week"
         >
           <template v-slot:dayHeader="{ date }">
