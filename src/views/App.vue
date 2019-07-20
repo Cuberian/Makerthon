@@ -2,8 +2,8 @@
 <template>
  
   <v-app>
-    <v-toolbar app style="z-index:2; background-color: teal;">
-      <v-toolbar-side-icon @click.stop="drawer=!drawer, resize(drawer)"></v-toolbar-side-icon>
+    <v-toolbar color="primary" app style="z-index:2; background-color: teal;">
+      <v-toolbar-side-icon color="primary" @click.stop="drawer=!drawer, resize(drawer)"></v-toolbar-side-icon>
       <v-toolbar-title ></v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-sm-and-down">
@@ -65,7 +65,7 @@
       :size="100"
       :width="15"
       :value="value"
-      color="teal"
+      color="4312AE"
     >
       {{ value }}
     </v-progress-circular>
@@ -75,7 +75,7 @@
       :size="100"
       :width="15"
       :value="value"
-      color="yellow"
+      color="4312AE"
     >
       {{ value }}
     </v-progress-circular>
@@ -85,7 +85,7 @@
       :size="100"
       :width="15"
       :value="value"
-      color="red"
+      color="4312AE"
     >
       {{ value }}
     </v-progress-circular>
@@ -322,9 +322,9 @@ export default {
     text-overflow: ellipsis;
     white-space: nowrap;
     border-radius: 2px;
-    background-color: #1867c0;
+    background-color: #FFDB00;
     color: #ffffff;
-    border: 1px solid #1867c0;
+    border: 1px solid #FFDB00;
     font-size: 12px;
     padding: 3px;
     cursor: pointer;
