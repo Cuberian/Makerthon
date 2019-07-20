@@ -27,7 +27,7 @@
           :key="obj.id"
            >
             <v-card
-          @click=""
+          @click="dialog=true"
           style="margin:10px;"        
        slot-scope="{ hover }"
       class="mx-auto"
@@ -53,17 +53,6 @@
         class="pt-4"
         style="position: relative;"
       >
-        <v-btn
-          absolute
-          color="orange"
-          class="white--text"
-          fab
-          large
-          right
-          top
-        >
-          <v-icon>shopping_cart</v-icon>
-        </v-btn>
         <h3 class="display-1 font-weight-light orange--text mb-2">{{obj.title}}</h3>
       </v-card-text>
       <v-card-actions>
@@ -71,7 +60,6 @@
   <v-layout row justify-center>
     <v-dialog v-model="dialog" max-width="80%" max-height="100%">
       <template v-slot:activator="{ on }">
-        <v-btn color="primary" dark v-on="on">Описание</v-btn>
       </template>
       <v-card>
         <v-layout justify-center>
@@ -216,7 +204,7 @@ export default {
     cardItems(){
       return[
         {
-          title:'Моделирование',
+          title:'Математическое моделирование',
           teacher: 'Лолов Кек Чебурекович',
           description:'Равным образом дальнейшее развитие различных форм деятельности требуют от нас анализа системы обучения кадров, соответствует насущным потребностям. Таким образом начало повседневной работы по формированию позиции представляет собой интересный эксперимент проверки направлений прогрессивного развития.',
           host:'Дудаев',
