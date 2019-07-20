@@ -94,33 +94,117 @@
           color="primary"
           type="week"
         >
-          <!-- the events at the top (all-day) -->
           <template v-slot:dayHeader="{ date }">
             <template v-for="event in eventsMap[date]">
-              <!-- all day events don't have time -->
-              <div
-                v-if="!event.time"
+              <v-menu
                 :key="event.title"
-                class="my-event"
-                @click="open(event)"
-                v-html="event.title"
-              ></div>
+                v-model="event.open"
+                full-width
+                offset-x
+              >
+                <template v-slot:activator="{ on }">
+                  <div
+                    v-if="!event.time"
+                    :key="event.title"
+                    class="my-event"
+                    v-on="on"
+                    v-html="event.title"
+                  ></div>
+                </template>
+                <v-card
+                  color="grey lighten-4"
+                  min-width="350px"
+                  flat
+                >
+                  <v-toolbar
+                    color="primary"
+                    dark
+                  >
+                    <v-btn icon>
+                      <v-icon>edit</v-icon>
+                    </v-btn>
+                    <v-toolbar-title v-html="event.title"></v-toolbar-title>
+                    <v-spacer></v-spacer>
+                    <v-btn icon>
+                      <v-icon>favorite</v-icon>
+                    </v-btn>
+                    <v-btn icon>
+                      <v-icon>more_vert</v-icon>
+                    </v-btn>
+                  </v-toolbar>
+                  <v-card-title primary-title>
+                    <span v-html="event.details"></span>
+                  </v-card-title>
+                  <v-card-actions>
+                    <v-btn
+                      flat
+                      color="secondary"
+                    >
+                      Cancel
+                    </v-btn>
+                  </v-card-actions>
+                </v-card>
+              </v-menu>
             </template>
           </template>
-          <!-- the events at the bottom (timed) -->
+
           <template v-slot:dayBody="{ date, timeToY, minutesToPixels }">
             <template v-for="event in eventsMap[date]">
               <!-- timed events -->
-              <div
-                v-if="event.time"
+              <v-menu
                 :key="event.title"
-                :style="{ top: timeToY(event.time) + 'px', height: minutesToPixels(event.duration) + 'px' }"
-                class="my-event with-time"
-                @click="open(event)"
-                v-html="event.title"
-              ></div>
+                v-model="event.open"
+                full-width
+                offset-x
+              >
+                <template v-slot:activator="{ on }">
+                  <div
+                    v-if="event.time"
+                    v-ripple
+                    :style="{ top: timeToY(event.time) + 'px', height: minutesToPixels(event.duration) + 'px' }"
+                    class="my-event with-time"
+                    v-on="on"
+                    v-html="event.title"
+                  ></div>
+                </template>
+                <v-card
+                  color="grey lighten-4"
+                  min-width="350px"
+                  flat
+                >
+                  <v-toolbar
+                    color="primary"
+                    dark
+                  >
+                    <v-btn icon>
+                      <v-icon>edit</v-icon>
+                    </v-btn>
+                    <v-toolbar-title v-html="event.title"></v-toolbar-title>
+                    <v-spacer></v-spacer>
+                    <v-btn icon>
+                      <v-icon>favorite</v-icon>
+                    </v-btn>
+                    <v-btn icon>
+                      <v-icon>more_vert</v-icon>
+                    </v-btn>
+                  </v-toolbar>
+                  <v-card-title primary-title>
+                    <span v-html="event.details"></span>
+                  </v-card-title>
+                  <v-card-actions>
+                    <v-btn
+                      flat
+                      color="secondary"
+                    >
+                      Cancel
+                    </v-btn>
+                  </v-card-actions>
+                </v-card>
+              </v-menu>
+
             </template>
           </template>
+
         </v-calendar>
       </v-sheet>
     </v-content>
@@ -143,17 +227,20 @@ export default {
           title: 'Weekly Meeting',
           date: '2019-01-07',
           time: '09:00',
-          duration: 45
+          duration: 45,
+          open:false
         },
         {
           title: 'Thomas\' Birthday',
-          date: '2019-01-10'
+          date: '2019-01-10',
+          open:false
         },
         {
           title: 'Mash Potatoes',
           date: '2019-01-09',
           time: '12:30',
-          duration: 180
+          duration: 180,
+          open:false
         }
       ],
       drawer:true,
@@ -250,6 +337,6 @@ export default {
     margin-top:20px; 
     position: absolute;
     width:50%;
-    hieghtP:90%;
+    height:90%;
   }
 </style>
