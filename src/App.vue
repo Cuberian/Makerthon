@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-toolbar app style="z-index:1">
-      <v-toolbar-side-icon></v-toolbar-side-icon>
+      <v-toolbar-side-icon @click.stop="drawer=!drawer"></v-toolbar-side-icon>
       <v-toolbar-title ></v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-sm-and-down">
@@ -10,19 +10,25 @@
     </v-toolbar>
 
     <v-content>
-          <v-navigation-drawer style="position: absolute;z-index:0">
-  <v-list two-line>
-    <template>
-    <v-list-tile avatar>
+          <v-navigation-drawer style="position: absolute;z-index:0" v-model="drawer">
+  <v-list two-line flat>
+    <v-list-tile v-for="item in items" :key='id' @click="">
+      <v-list-tile-action>
+        <v-icon v-html="item.icon"></v-icon>
+      </v-list-tile-action>
       <v-list-tile-content>
-  <v-list-tile-title>vdv</v-list-tile-title>
- <v-list-tile-title>vdvd</v-list-tile-title>
-      </v-list-tile-content>
+  <v-list-tile-title v-text="item.title"></v-list-tile-title> 
+  </v-list-tile-content>
     </v-list-tile>
-    </template>
   </v-list>
 </v-navigation-drawer>
-      <v-sheet height="400" width="800" style="margin:auto; position: relative">
+<v-navigation-drawer style="position: absolute; z-index:0; width:350px;" right>
+<v-list two-line>
+  
+  </v-list>
+</v-navigation-drawer>
+
+      <v-sheet height="600" width="740" style="margin:auto; margin-top:50px; right:30px; position: relative">
         <!-- now is normally calculated by itself, but to keep the calendar in this date range to view events -->
         <v-calendar
           ref="calendar"
@@ -92,7 +98,8 @@ export default {
           time: '12:30',
           duration: 180
         }
-      ]
+      ],
+      drawer:false
     }
   },
   computed: {
@@ -101,6 +108,25 @@ export default {
         const map = {}
         this.events.forEach(e => (map[e.date] = map[e.date] || []).push(e))
         return map
+      },
+      items(){
+        return[
+        {
+          id:1,
+          title:'ГЛАВНАЯ',
+          icon:'widgets'
+        },
+        {
+          id:2,
+          title:'МОЙ КАБИНЕТ',
+          icon:'widgets'
+        },
+        {
+          id:3,
+          title:'ЗАДАНИЯ',
+          icon:'widgets'
+        },
+        ]
       }
     },
     mounted () {
