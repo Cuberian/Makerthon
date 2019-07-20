@@ -25,102 +25,59 @@
   </v-list>
  
   </v-navigation-drawer>
- 
- <v-layout style="width=80%;" right d-{flex} align-start justify-center row wrap>
-            <v-card
-       v-for="obj in cardItems"
-          :key="obj.id"
-          @click=""
-          style="margin:10px;"
-          v-on="on"
+
+<v-layout style="width:79%; margin-left:21%; margin-top: 2%" align-starts fill-height>
+<template>
+  <v-hover 
+  v-for="obj in cardItems"
+    :key="obj"
+    
+    >
+    <v-card
+      @click=""
+      style="margin:0px; padding:0px;"
+      slot-scope="{ hover }"
+      class="mx-auto"
+      color="grey lighten-4"
+      width="500"
+      height="400"
+    >
+      <v-img
+        :aspect-ratio="16/9"
+        src="https://cdn.vuetifyjs.com/images/cards/kitchen.png"
       >
-        
-        <v-card-title primary-title>
-          <div>
-            <div class="headline">{{obj.title}}</div>
-            <span class="grey--text"></span>
+        <v-expand-transition>
+          <div
+            v-if="hover"
+            class="d-flex transition-fast-in-fast-out orange darken-2 v-card--reveal display-3 white--text"
+            style="height: 100%;"
+          >
+            Подробнее
           </div>
-        </v-card-title>
-
-        <v-slide-y-transition>
-          <v-card-text>
-            {{obj.description}}
-          </v-card-text>
-           <v-card-text>
-            {{obj.description}}
-          </v-card-text>
-        </v-slide-y-transition>
-
-               <v-card-actions>
-                 <template>
-  <v-layout row justify-center>
-    <v-dialog v-model="dialog" persistent max-width="600px">
-      <template v-slot:activator="{ on }">
-        <v-btn color="primary" dark v-on="on">Open Dialog</v-btn>
-      </template>
-      <v-card>
-        <v-card-title>
-          <span class="headline">User Profile</span>
-        </v-card-title>
-        <v-card-text>
-          <v-container grid-list-md>
-            <v-layout wrap>
-              <v-flex xs12 sm6 md4>
-                <v-text-field label="Legal first name*" required></v-text-field>
-              </v-flex>
-              <v-flex xs12 sm6 md4>
-                <v-text-field label="Legal middle name" hint="example of helper text only on focus"></v-text-field>
-              </v-flex>
-              <v-flex xs12 sm6 md4>
-                <v-text-field
-                  label="Legal last name*"
-                  hint="example of persistent helper text"
-                  persistent-hint
-                  required
-                ></v-text-field>
-              </v-flex>
-              <v-flex xs12>
-                <v-text-field label="Email*" required></v-text-field>
-              </v-flex>
-              <v-flex xs12>
-                <v-text-field label="Password*" type="password" required></v-text-field>
-              </v-flex>
-              <v-flex xs12 sm6>
-                <v-select
-                  :items="['0-17', '18-29', '30-54', '54+']"
-                  label="Age*"
-                  required
-                ></v-select>
-              </v-flex>
-              <v-flex xs12 sm6>
-                <v-autocomplete
-                  :items="['Skiing', 'Ice hockey', 'Soccer', 'Basketball', 'Hockey', 'Reading', 'Writing', 'Coding', 'Basejump']"
-                  label="Interests"
-                  multiple
-                ></v-autocomplete>
-              </v-flex>
-            </v-layout>
-          </v-container>
-          <small>*indicates required field</small>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn color="blue darken-1" flat @click="dialog = false">Close</v-btn>
-          <v-btn color="blue darken-1" flat @click="dialog = false">Save</v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
-  </v-layout>
+        </v-expand-transition>
+      </v-img>
+      <v-card-text
+        class="pt-4"
+        style="position: relative;"
+      >
+        <v-btn
+          absolute
+          color="orange"
+          class="white--text"
+          fab
+          large
+          right
+          top
+        >
+          <v-icon>mdi-cart</v-icon>
+        </v-btn>
+        <h3 class="display-1 font-weight-light orange--text mb-2">{{obj.title}}</h3>     
+      </v-card-text>
+    </v-card>
+  </v-hover>
 </template>
-          <v-btn flat color="purple">Завершить</v-btn>
-          <v-btn flat color="blue">Удалить</v-btn>
-          <v-spacer></v-spacer>
-        </v-card-actions>
-      </v-card>
-          </v-flex>
-        </v-layout>
-      
-    </v-content>
+ </v-layout>
+  </v-content>
  
   </v-app>
 </template>
@@ -191,14 +148,12 @@ export default {
         {
           title:'математическое моделирование',
           teacher: 'Лолов Кек Чебурекович',
-          description:'Говно',
           host:'Дудаев',
           helpers:'Сидоров'
         },
          {
           title:'Информатика',
           teacher: 'Борщ Влад Мемов',
-          description:'ВЫ ОБЪЕБОСЫ РУССКОГО НАРОДА, БЛЯДЬ',
           host:'Гаврилов',
           helpers:'Ололоев'
         }
@@ -264,5 +219,15 @@ export default {
     width:50%;
     height:90%;
   }
+
+.v-card--reveal {
+  align-items: center;
+  bottom: 0;
+  justify-content: center;
+  opacity: .5;
+  position: absolute;
+  width: 100%;
+}
+
 </style>
 
