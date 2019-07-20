@@ -270,19 +270,13 @@ export default {
           id:1,
           title:'ГЛАВНАЯ',
           icon:'widgets',
-          router:'/'
+          router:'/Home'
         },
         {
           id:2,
           title:'МОЙ КАБИНЕТ',
           icon:'widgets',
-          router:'/Home'
-        },
-        {
-          id:3,
-          title:'ЗАДАНИЯ',
-          icon:'widgets',
-          router:'/About'
+          router:'/'
         },
         ]
       }
