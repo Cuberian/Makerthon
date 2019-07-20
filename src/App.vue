@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-toolbar app style="z-index:2; background-color: teal;">
+    <v-toolbar  app style="z-index:2; background-color: #FF9F00;">
       <v-toolbar-side-icon @click.stop="drawer=!drawer, resize(drawer)"></v-toolbar-side-icon>
       <v-toolbar-title ></v-toolbar-title>
       <v-spacer></v-spacer>
@@ -25,7 +25,7 @@
   <v-list two-line>
   <v-card width="320" style="margin:auto">
         <v-img
-          src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
+          src="https://southbanklondon.com/sites/default/files/2017-05/Barry_Bee_Shrek_Adventure_South_Bank_London.jpg"
           height="200px"
         >
         </v-img>
@@ -38,8 +38,8 @@
         </v-card-title>
 
         <v-card-actions>
-          <v-btn flat>Share</v-btn>
-          <v-btn flat color="purple">Explore</v-btn>
+          <v-btn flat color="#0F4FA8">Share</v-btn>
+          <v-btn flat color="#4312AE">Explore</v-btn>
           <v-spacer></v-spacer>
           <v-btn icon @click="show = !show">
             <v-icon>{{ show ? 'keyboard_arrow_down' : 'keyboard_arrow_up' }}</v-icon>
@@ -58,7 +58,7 @@
       :size="100"
       :width="15"
       :value="value"
-      color="teal"
+      color="#4312AE"
     >
       {{ value }}
     </v-progress-circular>
@@ -68,7 +68,7 @@
       :size="100"
       :width="15"
       :value="value"
-      color="yellow"
+      color="#4312AE"
     >
       {{ value }}
     </v-progress-circular>
@@ -78,7 +78,7 @@
       :size="100"
       :width="15"
       :value="value"
-      color="red"
+      color="#4312AE"
     >
       {{ value }}
     </v-progress-circular>
@@ -314,9 +314,9 @@ export default {
     text-overflow: ellipsis;
     white-space: nowrap;
     border-radius: 2px;
-    background-color: darkcyan;
+    background-color: #FFDB00;
     color: #ffffff;
-    border: 1px solid darkcyan;
+    border: 1px solid #FFDB00;
     font-size: 12px;
     padding: 3px;
     cursor: pointer;
