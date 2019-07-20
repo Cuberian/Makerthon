@@ -5,15 +5,13 @@ import psycopg2
 import services.exceptions as  exc
 from datetime import datetime as dt
 
-
-
-@app.before_first_request
+@app.before_request
 def before_request():
     conn = psycopg2.connect(dbname = 'obdb', user = 'postgres', password = 'qazwsxedc', host = '172.20.10.3')
     global cursor
     cursor = conn.cursor()
 
-@app.teardown_appcontext
+@app.teardown_request
 def teardown_request(exception):
     cursor.close()
     print('closed')
@@ -26,7 +24,6 @@ def userIds(id):
             data = generateDict(cursor)
         except exc.NotFound:
             return make_response('User not found', 404)
-        print(data)
         return make_response(jsonify(data), 200)
 
 @app.route('/user/courses', methods = ['GET', 'POST'])
