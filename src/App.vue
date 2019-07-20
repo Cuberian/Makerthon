@@ -21,7 +21,7 @@
     </v-list-tile>
   </v-list>
 </v-navigation-drawer>
-<v-navigation-drawer style="position: absolute; z-index:1; width:350px;" right>
+<v-navigation-drawer style="position: fixed; z-index:1; width:350px; margin-top: 60px;" right>
   <v-list two-line>
   <v-card width="320" style="margin:auto">
         <v-img
@@ -211,11 +211,11 @@ export default {
       resize(drawer){
         if(!drawer)
         {
-          document.getElementById('calendar').style="width:70%; right:180px; position:relative; margin:auto;  margin-top:20px; ";
+          document.getElementById('calendar').style="width:70%; height: 90%; left:40px; position:absolute; margin:auto;  margin-top:20px; ";
         }
         else
         {
-          document.getElementById('calendar').style="width:50%; position:relative; margin:auto;  margin-top:20px; ";
+          document.getElementById('calendar').style="width:50%; height: 90%; position:absolute; margin:auto;  margin-top:20px; margin-left: 23%; ";
         }
       }
     }
@@ -245,11 +245,11 @@ export default {
     }
   }
   #calendar{
-    margin:auto; 
+    margin-left: 23%; 
     z-index:0; 
     margin-top:20px; 
-    right:30px; 
-    position: relative;
+    position: absolute;
     width:50%;
+    hieghtP:90%;
   }
 </style>
