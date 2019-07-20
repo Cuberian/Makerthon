@@ -125,8 +125,7 @@ export default {
           router:'/'
         },
         ]
-      }
-    },
+      },
     cardItems(){
       return[
         {
@@ -146,7 +145,8 @@ export default {
           date:1488
         }
       ]
-    },
+    }
+  },
     beforeDestroy () {
       clearInterval(this.interval)
     },
