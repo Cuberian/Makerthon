@@ -27,7 +27,7 @@
   </v-navigation-drawer>
  
 <v-layout align-start justify-center row style="width:80%" >
-          <v-flex  xs7 sm3 offset-sm3>
+          <v-flex  xs7 sm3 offset-sm3 >
             <v-card
        v-for="obj in cardItems"
           :key="obj.id"
