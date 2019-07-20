@@ -37,7 +37,8 @@
        slot-scope="{ hover }"
       class="mx-auto"
       color="grey lighten-4"
-      max-width="600"
+      width="500"
+      height="450"
     >
       <v-img
         :aspect-ratio="16/9"
@@ -49,7 +50,7 @@
             class="d-flex transition-fast-in-fast-out orange darken-2 v-card--reveal display-3 white--text"
             style="height: 100%;"
           >
-            $14.99
+            Подробнее
           </div>
         </v-expand-transition>
       </v-img>
@@ -66,20 +67,11 @@
           right
           top
         >
-          <v-icon>mdi-cart</v-icon>
+          <v-icon>shopping_cart</v-icon>
         </v-btn>
-        <div class="font-weight-light grey--text title mb-2">For the perfect meal</div>
-        <h3 class="display-1 font-weight-light orange--text mb-2">QW cooking utensils</h3>
-        <div class="font-weight-light title mb-2">
-          Our Vintage kitchen utensils delight any chef.<br>
-          Made of bamboo by hand
-        </div>
+        <h3 class="display-1 font-weight-light orange--text mb-2">{{obj.title}}</h3>
       </v-card-text>
-    </v-card>
-  </v-hover>
-        </v-card-title>
-
-               <v-card-actions>
+      <v-card-actions>
                  <template>
   <v-layout row justify-center>
     <v-dialog v-model="dialog" max-width="80%" max-height="100%">
@@ -119,6 +111,7 @@
       </v-card>
     </v-timeline-item>
   </v-timeline>
+
    <v-card-actions>
 <v-layout justify-center>
           <v-btn
@@ -128,14 +121,31 @@
           >
           Записаться
           </v-btn>
-  </v-layout>
+    </v-layout>         
         </v-card-actions>
       </v-card>
     </v-dialog>
-  </v-layout>
-</v-content>
-  </v-app>
+    </v-layout>
 </template>
+</v-card-actions>
+    </v-card>
+  </v-hover>
+</v-layout>
+</v-content>
+</v-app>
+</template>     
+
+
+
+
+ 
+
+
+
+
+
+
+
 
 
 
