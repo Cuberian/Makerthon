@@ -26,33 +26,38 @@
  
   </v-navigation-drawer>
  
- <v-layout style="width=80%;" right d-{flex} align-start justify-center row wrap>
-            <v-card
-       v-for="obj in cardItems"
-          :key="obj.id"
-          @click=""
-          style="margin:10px;"
-      >
-        
-        <v-card-title primary-title>
-          <div>
-            <div class="headline">{{obj.title}}</div>
-            <span class="grey--text"></span>
-          </div>
-        </v-card-title>
-
-        <v-slide-y-transition>
-          <v-card-text>
-            {{obj.description}}
-          </v-card-text>
-        </v-slide-y-transition>
-
-               <v-card-actions>
-          <v-btn flat color="purple">Завершить</v-btn>
-          <v-btn flat color="blue">Удалить</v-btn>
-          <v-spacer></v-spacer>
-        </v-card-actions>
-      </v-card>
+<v-layout row style="width:80%" right>
+          <v-flex 12>
+            <v-card color="cyan darken-2" class="white--text"  v-for="cardItem in cardItems" :key='teacher'>
+              <v-layout>
+                <v-flex xs5>
+                  <v-img
+                    :src="cardItem.image"
+                    height="125px"
+                    contain
+                  ></v-img>
+                </v-flex>
+                <v-flex xs7>
+                  <v-card-title primary-title>
+                    <div>
+                      <div class="headline" v-text="cardItem.title"></div>
+                      <div v-text="cardItem.teacher"></div>
+                      <div v-text="cardItem.date"></div>
+                    </div>
+                  </v-card-title>
+                </v-flex>
+              </v-layout>
+              <v-divider light></v-divider>
+              <v-card-actions class="pa-3">
+                {{cardItem.description}}
+                <v-spacer></v-spacer>
+                <v-icon>star_border</v-icon>
+                <v-icon>star_border</v-icon>
+                <v-icon>star_border</v-icon>
+                <v-icon>star_border</v-icon>
+                <v-icon>star_border</v-icon>
+              </v-card-actions>
+            </v-card>
           </v-flex>
         </v-layout>
       
