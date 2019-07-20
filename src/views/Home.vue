@@ -12,7 +12,7 @@
     <v-content>
           <v-navigation-drawer style="position: absolute;z-index:1" v-model="drawer">
   <v-list two-line flat>
-    <v-list-tile v-for="item in items" :key='id' @click="">
+    <v-list-tile v-for="item in  navs" :key='id' @click="">
       <router-link :to="item.router">
       <v-list-tile-action>
         <v-icon v-html="item.icon"></v-icon>
@@ -42,71 +42,56 @@
           </div>
         </v-card-title>
 
-        <v-slide-y-transition>
-          <v-card-text>
-            {{obj.description}}
-          </v-card-text>
-           <v-card-text>
-            {{obj.description}}
-          </v-card-text>
-        </v-slide-y-transition>
-
                <v-card-actions>
                  <template>
   <v-layout row justify-center>
-    <v-dialog v-model="dialog" persistent max-width="600px">
+    <v-dialog v-model="dialog" max-width="80%" max-height="100%">
       <template v-slot:activator="{ on }">
-        <v-btn color="primary" dark v-on="on">Open Dialog</v-btn>
+        <v-btn color="primary" dark v-on="on">Описание</v-btn>
       </template>
       <v-card>
-        <v-card-title>
-          <span class="headline">User Profile</span>
-        </v-card-title>
-        <v-card-text>
-          <v-container grid-list-md>
-            <v-layout wrap>
-              <v-flex xs12 sm6 md4>
-                <v-text-field label="Legal first name*" required></v-text-field>
-              </v-flex>
-              <v-flex xs12 sm6 md4>
-                <v-text-field label="Legal middle name" hint="example of helper text only on focus"></v-text-field>
-              </v-flex>
-              <v-flex xs12 sm6 md4>
-                <v-text-field
-                  label="Legal last name*"
-                  hint="example of persistent helper text"
-                  persistent-hint
-                  required
-                ></v-text-field>
-              </v-flex>
-              <v-flex xs12>
-                <v-text-field label="Email*" required></v-text-field>
-              </v-flex>
-              <v-flex xs12>
-                <v-text-field label="Password*" type="password" required></v-text-field>
-              </v-flex>
-              <v-flex xs12 sm6>
-                <v-select
-                  :items="['0-17', '18-29', '30-54', '54+']"
-                  label="Age*"
-                  required
-                ></v-select>
-              </v-flex>
-              <v-flex xs12 sm6>
-                <v-autocomplete
-                  :items="['Skiing', 'Ice hockey', 'Soccer', 'Basketball', 'Hockey', 'Reading', 'Writing', 'Coding', 'Basejump']"
-                  label="Interests"
-                  multiple
-                ></v-autocomplete>
-              </v-flex>
-            </v-layout>
-          </v-container>
-          <small>*indicates required field</small>
+        <v-layout justify-center>
+          <span class="headline">{{obj.title}}</span><br>
+        </v-layout>
+          <v-timeline align-top>
+    <v-timeline-item
+      v-for="(item, i) in items"
+      :key="i"
+      :color="item.color"
+      :icon="item.icon"
+      fill-dot
+    >
+        <template v-slot:opposite>
+        <span
+          :class="'headline font-weight-bold ${item.color}--text'"
+          v-text="item.name"
+        ></span>
+      </template>
+      <v-card
+        :color="item.color"
+        dark
+      >
+        <v-card-title class="title">{{item.name}}</v-card-title>
+        <v-card-text class="white text--primary">
+          <p>{{item.description}}</p>
+          <v-card-title><span class="headline">Авторы</span></v-card-title>
+         <v-card-text v-for="author in item.authors">
+          <span><v-icon color="accent">account_circle</v-icon>{{author}} </span>
+          </v-card-text> 
         </v-card-text>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn color="blue darken-1" flat @click="dialog = false">Close</v-btn>
-          <v-btn color="blue darken-1" flat @click="dialog = false">Save</v-btn>
+      </v-card>
+    </v-timeline-item>
+  </v-timeline>
+   <v-card-actions>
+<v-layout justify-center>
+          <v-btn
+            color="primary"
+            flat
+            @click="dialog = false"
+          >
+          Записаться
+          </v-btn>
+ </v-layout>         
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -134,28 +119,38 @@ export default {
   },
   data () {
     return {
-       today: '2019-01-08',
-      events: [
+      items: [
         {
-          title: 'Weekly Meeting',
-          date: '2019-01-07',
-          time: '09:00',
-          duration: 45,
-          open:false
+          name: "Базовые операции",
+          description:"Равным образом дальнейшее развитие различных форм деятельности требуют от нас анализа системы обучения кадров, соответствует насущным потребностям. Таким образом начало повседневной работы по формированию позиции представляет собой интересный эксперимент проверки направлений прогрессивного развития.",
+          authors:["Суворов","Кутузов"],
+          color: 'red lighten-2',
+          icon: 'mdi-star'
         },
         {
-          title: 'Thomas\' Birthday',
-          date: '2019-01-10',
-          open:false
+          name:"Введение в матанализ",
+          description:"Равным образом дальнейшее развитие различных форм деятельности требуют от нас анализа системы обучения кадров, соответствует насущным потребностям. Таким образом начало повседневной работы по формированию позиции представляет собой интересный эксперимент проверки направлений прогрессивного развития.",
+          color: 'purple darken-1',
+          authors:["Суворов","Кутузов"],
+          icon: 'mdi-book-variant'
         },
         {
-          title: 'Mash Potatoes',
-          date: '2019-01-09',
-          time: '12:30',
-          duration: 180,
-          open:false
+          name:"Интегрирование",
+          description:"Равным образом дальнейшее развитие различных форм деятельности требуют от нас анализа системы обучения кадров, соответствует насущным потребностям. Таким образом начало повседневной работы по формированию позиции представляет собой интересный эксперимент проверки направлений прогрессивного развития.",
+          authors:["Суворов","Кутузов"],
+          color: 'green lighten-1',
+
+          icon: 'mdi-airballoon'
+        },
+        {
+          name:"Моделирование",
+          description:"Равным образом дальнейшее развитие различных форм деятельности требуют от нас анализа системы обучения кадров, соответствует насущным потребностям. Таким образом начало повседневной работы по формированию позиции представляет собой интересный эксперимент проверки направлений прогрессивного развития.",
+          authors:["Суворов"],
+          color: 'indigo',
+          icon: 'mdi-buffer'
         }
       ],
+       today: '2019-01-08',
       drawer:true,
       dialog:false,
       show: false,
@@ -170,7 +165,7 @@ export default {
         this.events.forEach(e => (map[e.date] = map[e.date] || []).push(e))
         return map
       },
-      items(){
+      navs(){
         return[
         {
           id:1,
@@ -189,16 +184,16 @@ export default {
     cardItems(){
       return[
         {
-          title:'математическое моделирование',
+          title:'Mатематическое моделирование',
           teacher: 'Лолов Кек Чебурекович',
-          description:'Говно',
+          description:'Равным образом дальнейшее развитие различных форм деятельности требуют от нас анализа системы обучения кадров, соответствует насущным потребностям. Таким образом начало повседневной работы по формированию позиции представляет собой интересный эксперимент проверки направлений прогрессивного развития.',
           host:'Дудаев',
           helpers:'Сидоров'
         },
          {
           title:'Информатика',
           teacher: 'Борщ Влад Мемов',
-          description:'ВЫ ОБЪЕБОСЫ РУССКОГО НАРОДА, БЛЯДЬ',
+          description:'Равным образом дальнейшее развитие различных форм деятельности требуют от нас анализа системы обучения кадров, соответствует насущным потребностям. Таким образом начало повседневной работы по формированию позиции представляет собой интересный эксперимент проверки направлений прогрессивного развития.',
           host:'Гаврилов',
           helpers:'Ололоев'
         }
