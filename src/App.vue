@@ -260,13 +260,13 @@ export default {
         return[
         {
           id:1,
-          title:'ГЛАВНАЯ',
+          title:'КАРТА',
           icon:'widgets',
           router:'/'
         },
         {
           id:2,
-          title:'МОЙ КАБИНЕТ',
+          title:'ПРОФИЛЬ',
           icon:'widgets',
           router:'/Home'
         },
