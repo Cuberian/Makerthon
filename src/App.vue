@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-toolbar app style="z-index:1">
+    <v-toolbar app style="z-index:2">
       <v-toolbar-side-icon @click.stop="drawer=!drawer"></v-toolbar-side-icon>
       <v-toolbar-title ></v-toolbar-title>
       <v-spacer></v-spacer>
@@ -10,7 +10,7 @@
     </v-toolbar>
 
     <v-content>
-          <v-navigation-drawer style="position: absolute;z-index:0" v-model="drawer">
+          <v-navigation-drawer style="position: absolute;z-index:1" v-model="drawer">
   <v-list two-line flat>
     <v-list-tile v-for="item in items" :key='id' @click="">
       <v-list-tile-action>
@@ -22,13 +22,71 @@
     </v-list-tile>
   </v-list>
 </v-navigation-drawer>
-<v-navigation-drawer style="position: absolute; z-index:0; width:350px;" right>
-<v-list two-line>
-  
+<v-navigation-drawer style="position: absolute; z-index:1; width:350px;" right>
+  <v-list two-line>
+  <v-card width="320" style="margin:auto">
+        <v-img
+          src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
+          height="200px"
+        >
+        </v-img>
+
+        <v-card-title primary-title>
+          <div>
+            <div class="headline">НИКНЕЙМ</div>
+            <span class="grey--text">КАКОЙ-ТО СТАТУС</span>
+          </div>
+        </v-card-title>
+
+        <v-card-actions>
+          <v-btn flat>Share</v-btn>
+          <v-btn flat color="purple">Explore</v-btn>
+          <v-spacer></v-spacer>
+          <v-btn icon @click="show = !show">
+            <v-icon>{{ show ? 'keyboard_arrow_down' : 'keyboard_arrow_up' }}</v-icon>
+          </v-btn>
+        </v-card-actions>
+
+        <v-slide-y-transition>
+          <v-card-text v-show="show">
+            КАКИЕ-ТО ХАРАКТЕРИСТИКИ
+          </v-card-text>
+        </v-slide-y-transition>
+      </v-card>
+    <v-progress-circular
+    style="top:20px; left:20px"
+      :rotate="360"
+      :size="100"
+      :width="15"
+      :value="value"
+      color="teal"
+    >
+      {{ value }}
+    </v-progress-circular>
+    <v-progress-circular
+    style="top:20px; left:30px"
+      :rotate="360"
+      :size="100"
+      :width="15"
+      :value="value"
+      color="teal"
+    >
+      {{ value }}
+    </v-progress-circular>
+     <v-progress-circular
+    style="top:20px; left:40px"
+      :rotate="360"
+      :size="100"
+      :width="15"
+      :value="value"
+      color="teal"
+    >
+      {{ value }}
+    </v-progress-circular>
   </v-list>
 </v-navigation-drawer>
 
-      <v-sheet height="600" width="740" style="margin:auto; margin-top:50px; right:30px; position: relative">
+      <v-sheet height="650" width="740" style="margin:auto; z-index:0; margin-top:20px; right:30px; position: relative">
         <!-- now is normally calculated by itself, but to keep the calendar in this date range to view events -->
         <v-calendar
           ref="calendar"
@@ -99,7 +157,10 @@ export default {
           duration: 180
         }
       ],
-      drawer:false
+      drawer:true,
+      show: false,
+      interval: {},
+      value: 0
     }
   },
   computed: {
@@ -129,8 +190,17 @@ export default {
         ]
       }
     },
+    beforeDestroy () {
+      clearInterval(this.interval)
+    },
     mounted () {
-      this.$refs.calendar.scrollToTime('08:00')
+      this.$refs.calendar.scrollToTime('08:00');
+      this.interval = setInterval(() => {
+        if (this.value === 100) {
+          return (this.value = 0)
+        }
+        this.value += 10
+      }, 1000)
     },
     methods: {
       open (event) {
