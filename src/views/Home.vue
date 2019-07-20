@@ -26,13 +26,12 @@
  
   </v-navigation-drawer>
  
-<v-layout align-start justify-center row style="width:80%" >
-          <v-flex  xs7 sm3 offset-sm3 >
+ <v-layout style="width=80%;" right d-{flex} align-start justify-center row wrap>
             <v-card
        v-for="obj in cardItems"
           :key="obj.id"
           @click=""
-          style="margin-top:10px;"
+          style="margin:10px;"
       >
         
         <v-card-title primary-title>
