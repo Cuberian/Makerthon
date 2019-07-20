@@ -40,6 +40,7 @@
       width="500"
       height="450"
     >
+    
       <v-img
         :aspect-ratio="16/9"
         src="https://cdn.vuetifyjs.com/images/cards/kitchen.png"
