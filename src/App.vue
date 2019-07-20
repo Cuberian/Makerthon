@@ -1,18 +1,17 @@
 <template>
   <v-app>
-    <v-toolbar app style="z-index:2">
-      <v-toolbar-side-icon @click.stop="drawer=!drawer"></v-toolbar-side-icon>
+    <v-toolbar app style="z-index:2; background-color: teal;">
+      <v-toolbar-side-icon @click.stop="drawer=!drawer, resize(drawer)"></v-toolbar-side-icon>
       <v-toolbar-title ></v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-sm-and-down">
-      <v-btn flat>Account</v-btn>
     </v-toolbar-items> 
     </v-toolbar>
 
     <v-content>
           <v-navigation-drawer style="position: absolute;z-index:1" v-model="drawer">
   <v-list two-line flat>
-    <v-list-tile v-for="item in items" :key='id' @click="">
+    <v-list-tile v-for="item in items" :key='id' @click="item.router">
       <v-list-tile-action>
         <v-icon v-html="item.icon"></v-icon>
       </v-list-tile-action>
@@ -69,7 +68,7 @@
       :size="100"
       :width="15"
       :value="value"
-      color="teal"
+      color="yellow"
     >
       {{ value }}
     </v-progress-circular>
@@ -79,14 +78,14 @@
       :size="100"
       :width="15"
       :value="value"
-      color="teal"
+      color="red"
     >
       {{ value }}
     </v-progress-circular>
   </v-list>
 </v-navigation-drawer>
 
-      <v-sheet height="650" width="740" style="margin:auto; z-index:0; margin-top:20px; right:30px; position: relative">
+      <v-sheet height="650" id="calendar">
         <!-- now is normally calculated by itself, but to keep the calendar in this date range to view events -->
         <v-calendar
           ref="calendar"
@@ -175,17 +174,20 @@ export default {
         {
           id:1,
           title:'ГЛАВНАЯ',
-          icon:'widgets'
+          icon:'widgets',
+          router:'/'
         },
         {
           id:2,
           title:'МОЙ КАБИНЕТ',
-          icon:'widgets'
+          icon:'widgets',
+          router:'/Home'
         },
         {
           id:3,
           title:'ЗАДАНИЯ',
-          icon:'widgets'
+          icon:'widgets',
+          router:'/About'
         },
         ]
       }
@@ -199,12 +201,22 @@ export default {
         if (this.value === 100) {
           return (this.value = 0)
         }
-        this.value += 10
+        this.value += 5
       }, 1000)
     },
     methods: {
       open (event) {
         alert(event.title)
+      },
+      resize(drawer){
+        if(!drawer)
+        {
+          document.getElementById('calendar').style="width:70%; right:180px; position:relative; margin:auto;  margin-top:20px; ";
+        }
+        else
+        {
+          document.getElementById('calendar').style="width:50%; position:relative; margin:auto;  margin-top:20px; ";
+        }
       }
     }
 }
@@ -231,5 +243,13 @@ export default {
       right: 4px;
       margin-right: 0px;
     }
+  }
+  #calendar{
+    margin:auto; 
+    z-index:0; 
+    margin-top:20px; 
+    right:30px; 
+    position: relative;
+    width:50%;
   }
 </style>
