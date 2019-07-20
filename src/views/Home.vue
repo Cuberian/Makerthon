@@ -1,9 +1,9 @@
 <template>
  
   <v-app>
-    <v-toolbar color="primary" app style="z-index:2; background-color: teal;">
+    <v-toolbar color="primary" app style="z-index:2;">
       <v-toolbar-side-icon color="primary" @click.stop="drawer=!drawer, resize(drawer)"></v-toolbar-side-icon>
-      <v-toolbar-title ></v-toolbar-title>
+      <v-toolbar-title style="color:white;" >0браз</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-sm-and-down">
     </v-toolbar-items> 
@@ -14,12 +14,7 @@
   <v-list two-line flat>
     <v-list-tile v-for="item in  navs" :key='id' @click="">
       <router-link :to="item.router">
-      <v-list-tile-action>
-        <v-icon v-html="item.icon"></v-icon>
-      </v-list-tile-action>
-      <v-list-tile-content>
-  <v-list-tile-title v-text="item.title"></v-list-tile-title> 
-  </v-list-tile-content>
+      <v-list-tile-title v-text="item.title"></v-list-tile-title> 
   </router-link>
     </v-list-tile>
   </v-list>
@@ -221,7 +216,7 @@ export default {
     cardItems(){
       return[
         {
-          title:'Mатематическое моделирование',
+          title:'Моделирование',
           teacher: 'Лолов Кек Чебурекович',
           description:'Равным образом дальнейшее развитие различных форм деятельности требуют от нас анализа системы обучения кадров, соответствует насущным потребностям. Таким образом начало повседневной работы по формированию позиции представляет собой интересный эксперимент проверки направлений прогрессивного развития.',
           host:'Дудаев',
