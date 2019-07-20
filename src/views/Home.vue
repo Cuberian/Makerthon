@@ -24,10 +24,42 @@
     </v-list-tile>
   </v-list>
  
-
   </v-navigation-drawer>
  
-
+<v-layout row style="width:80%" right>
+          <v-flex xs12>
+            <v-card color="cyan darken-2" class="white--text"  v-for="cardItem in cardItems" :key='teacher'>
+              <v-layout>
+                <v-flex xs5>
+                  <v-img
+                    :src="cardItem.image"
+                    height="125px"
+                    contain
+                  ></v-img>
+                </v-flex>
+                <v-flex xs7>
+                  <v-card-title primary-title>
+                    <div>
+                      <div class="headline" v-text="cardItem.title"></div>
+                      <div v-text="cardItem.teacher"></div>
+                      <div v-text="cardItem.date"></div>
+                    </div>
+                  </v-card-title>
+                </v-flex>
+              </v-layout>
+              <v-divider light></v-divider>
+              <v-card-actions class="pa-3">
+                {{cardItem.description}}
+                <v-spacer></v-spacer>
+                <v-icon>star_border</v-icon>
+                <v-icon>star_border</v-icon>
+                <v-icon>star_border</v-icon>
+                <v-icon>star_border</v-icon>
+                <v-icon>star_border</v-icon>
+              </v-card-actions>
+            </v-card>
+          </v-flex>
+        </v-layout>
       
     </v-content>
  
@@ -95,6 +127,26 @@ export default {
         ]
       }
     },
+    cardItems(){
+      return[
+        {
+          id:1,
+          title:'математическое моделирование',
+          teacher: 'Лолов Кек Чебурекович',
+          image:null,
+          description:'Говно',
+          date:1488
+        },
+         {
+          id:2,
+          title:'Информатика',
+          teacher: 'Борщ Влад Мемов',
+          image:null,
+          description:'ВЫ ОБЪЕБОСЫ РУССКОГО НАРОДА, БЛЯДЬ',
+          date:1488
+        }
+      ]
+    },
     beforeDestroy () {
       clearInterval(this.interval)
     },
@@ -155,3 +207,4 @@ export default {
     height:90%;
   }
 </style>
+
