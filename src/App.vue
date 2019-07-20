@@ -224,18 +224,21 @@ export default {
           title: 'Weekly Meeting',
           date: '2019-01-07',
           time: '09:00',
+          details: 'Жизнь - Боль',
           duration: 45,
           open:false
         },
         {
           title: 'Thomas\' Birthday',
           date: '2019-01-10',
+          details: 'БЕ3N0ГNM',
           open:false
         },
         {
           title: 'Mash Potatoes',
           date: '2019-01-09',
           time: '12:30',
+          details: 'Автор: Иван Гамаз',
           duration: 180,
           open:false
         }
@@ -311,9 +314,9 @@ export default {
     text-overflow: ellipsis;
     white-space: nowrap;
     border-radius: 2px;
-    background-color: #1867c0;
+    background-color: darkcyan;
     color: #ffffff;
-    border: 1px solid #1867c0;
+    border: 1px solid darkcyan;
     font-size: 12px;
     padding: 3px;
     cursor: pointer;
