@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-toolbar app style="z-index:2; background-color: teal;">
+    <v-toolbar color="primary" app style="z-index:2;">
       <v-toolbar-side-icon @click.stop="drawer=!drawer, resize(drawer)"></v-toolbar-side-icon>
       <v-toolbar-title ></v-toolbar-title>
       <v-spacer></v-spacer>
@@ -112,12 +112,14 @@
             <template v-for="event in eventsMap[date]">
               <!-- timed events -->
               <div
+                background-color="primary"
                 v-if="event.time"
                 :key="event.title"
                 :style="{ top: timeToY(event.time) + 'px', height: minutesToPixels(event.duration) + 'px' }"
                 class="my-event with-time"
                 @click="open(event)"
                 v-html="event.title"
+                
               ></div>
             </template>
           </template>
@@ -175,13 +177,13 @@ export default {
           id:1,
           title:'ГЛАВНАЯ',
           icon:'widgets',
-          router:'/'
+          router:'/Home'
         },
         {
           id:2,
           title:'МОЙ КАБИНЕТ',
           icon:'widgets',
-          router:'/Home'
+          router:'/'
         },
         {
           id:3,
@@ -227,9 +229,9 @@ export default {
     text-overflow: ellipsis;
     white-space: nowrap;
     border-radius: 2px;
-    background-color: #1867c0;
+    background-color: darkcyan;
     color: #ffffff;
-    border: 1px solid #1867c0;
+    border: 1px solid darkcyan;
     font-size: 12px;
     padding: 3px;
     cursor: pointer;
